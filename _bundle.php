@@ -48,8 +48,12 @@ class Bundle {
 	}
 
 	public function route($path) {
-		echo 'Encrypted: '. ($string = $this->encrypt('test string')).'<br />';
-		echo 'Decrypted: '. print_r(unserialize($this->decrypt(base64_decode("MjCsOfncm/fsjDUBzJcYEhBr5Y9Ckz2ygMhXF+2HmfgKCiMjIElWIC8gRGF0YSAjIwoK6vGUPpNJRQZBRO5vTRhyqSH9ENNpPLWSmsATsVR/9jHkbepXDeK4WtLJp3ALWgtmuQ6pd7n53UQ6z73Oqha0XlHIhVLgs6Ge43+eMR6AwMOZkBiXA2Gb1HAF4j0DdYoklD89jt0m75rm/atqSjBvPJF7WA9aDtqcDlqv5aX4tPFKFCbEWK2Tkm6TJ9COc05A6fKhnFNeE7Y2lJyy7i3baV0D67TLIAaL3WYteLLBEJEqI+3wW8pXVszoAECuFzPSDXOPPbKlRvdNqHufhHUqi0uXsdBDIB9C2J/w2QBMEELC9i1f+xqhepJmxD+eu0mPOdh4ryyDwfxFeUL5qRZgXdX/gVD8RahHTCMjUOuGAuYVrsY/EKcqNprhvDNWnapFXvHkSE1rJaKvaJJ4f3u/VBIDgjRBzK6jDrHM6owc69u63P/xvCH3PxQXwUjTrY5OO18bKaRQ8U1F699PnVrX8ch26YzyAOQT/Y5yGb7+J2XC2jxSFyPwvmW09XvqPWuvBW4X/Rjtl/fn6o+2L/P5zGrQuclAz9sUW+IQvfqoZXX2IWPG2CEnvLm105Nv+rriBQjfnktJnoLK5mOMKTrJ2qdhQRrghtLgU4Iyaz5k6BgLp0pLb0WqMEYSNsIC4r3IoA1J3y+0lzKvSWbOmIwOV9vZEEuh2ToT9tiPoH5Ywg3RM7dYO9BEPhbdNZwAdZEVscMZiHFmjojew6R0cnEkhL5BVR9yiRVKynfJdPPbXru5J4mZOW7hfHrTBZ3nIqS+fXNOn1b0iPbE6g/bqACnHJ4SIpU="), '7378742833')));
+		$get = e::$resource->get;
+		$string = $get['string'];
+		$salt = $get['salt'];
+		
+		echo 'Encrypted: '. ($string = $this->encrypt($string, $salt)).'<br />';
+		echo 'Decrypted: '. $this->decrypt($string, $salt);
 		e\Complete();
 	}
 
